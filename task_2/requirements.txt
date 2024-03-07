@@ -1,0 +1,3 @@
+nltk
+pymorphy3
+beautifulsoup4
