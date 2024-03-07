@@ -77,7 +77,14 @@ def main():
     lemma_indexes, urls, all_indexes = prepare()
     morphy = pymorphy3.MorphAnalyzer()
 
-    sample_queries = ["рио", "карта", "тинькофф", "браузер"]
+    sample_queries = [
+        "рио",
+        "карта and тинькофф",
+        "карта and тинькофф or браузер",
+        "карта and (тинькофф or браузер)",
+        "тинькофф",
+        "браузер",
+    ]
     for query in sample_queries:
         print('Sample query: ', query)
         if query.strip().lower() == 'exit':
