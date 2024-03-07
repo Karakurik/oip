@@ -1,5 +1,6 @@
 import os
 import ssl
+import re
 import collections
 import nltk
 import pymorphy3
@@ -11,6 +12,7 @@ LEMMAS_FILE = './lemmas.txt'
 
 BAD_TOKENS = {
     'NUMB',
+    'NUMB,intg',
     'ROMN',
     'PNCT',
     'PREP',
@@ -47,7 +49,9 @@ def processing(directory, tokenizer, stop_words, morph):
             continue
 
         parsed_token = morph.parse(token)
-        if parsed_token[0].tag in BAD_TOKENS:
+        is_number = bool(re.compile(r'^[0-9]+$').match(token))
+        is_russian = bool(re.compile(r'^[а-яА-Я]{2,}$').match(token))
+        if not is_russian or is_number:
             continue
 
         tokens.add(token)
