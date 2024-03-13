@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Поисковая система</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        form input[type="search"] {
+            width: 70%;
+            padding: 10px;
+        }
+        form button {
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+        .result-item {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .result-item a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+        .result-item a:hover {
+            color: #23527c;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 id="top">Поисковая система</h1>
+    <form method="GET" action="/">
+        <label for="query">Введите запрос</label>
+        <input id="query" type="search" name="q" placeholder="запрос" value="{{q}}">
+        <button type="submit">Найти</button>
+    </form>
+    {% if result %}
+        <h3>Результат поиска:</h3>
+        {% for item in result %}
+            <div class="result-item">
+                <p>{{ item.1 }}</p>
+                <a href="{{ item.0 }}">{{ item.0 }}</a>
+            </div>
+        {% endfor %}
+        <a href="#top">Вернуться наверх</a>
+    {% endif %}
+</div>
+</body>
+</html>
