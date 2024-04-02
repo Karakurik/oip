@@ -30,8 +30,7 @@ def read_lemmas():
         lines = file.readlines()
         for line in lines:
             words = re.split('\\s+', line)
-            lemma = words[0][:len(words[0]) - 1]
-            lemmas.add(lemma)
+            lemmas.add(words[0])
     return lemmas
 
 
